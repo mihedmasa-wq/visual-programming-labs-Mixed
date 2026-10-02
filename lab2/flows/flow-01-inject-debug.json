@@ -1,0 +1,48 @@
+[
+    {
+        "id": "8f2a8b1476f1ea26",
+        "type": "inject",
+        "z": "39a426ed2c587252",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "lab2/Михед/basic",
+        "payload": "Михед",
+        "payloadType": "str",
+        "x": 190,
+        "y": 100,
+        "wires": [
+            [
+                "1a51cabde8dac766"
+            ]
+        ]
+    },
+    {
+        "id": "1a51cabde8dac766",
+        "type": "debug",
+        "z": "39a426ed2c587252",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 400,
+        "y": 100,
+        "wires": []
+    }
+]
