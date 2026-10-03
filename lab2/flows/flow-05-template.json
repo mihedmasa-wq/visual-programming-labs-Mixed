@@ -1,0 +1,67 @@
+[
+    {
+        "id": "6896f77ae0748f91",
+        "type": "inject",
+        "z": "32c59ae5b81b94c9",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "lab2/Михед/template",
+        "payload": "{\"name\":\"Михед\",\"group\":\"ТВП\",\"lab\":2}",
+        "payloadType": "json",
+        "x": 140,
+        "y": 180,
+        "wires": [
+            [
+                "2cdc6d9736665c43"
+            ]
+        ]
+    },
+    {
+        "id": "3e0b3a07112d8625",
+        "type": "debug",
+        "z": "32c59ae5b81b94c9",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "2cdc6d9736665c43",
+        "type": "template",
+        "z": "32c59ae5b81b94c9",
+        "name": "lab2/Михед/template",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "This is the payload: {{payload}} \n!Студент: {{payload.name}}\nГруппа: {{payload.group}}\nЛабораторная: №{{payload.lab}}",
+        "output": "str",
+        "x": 400,
+        "y": 180,
+        "wires": [
+            [
+                "3e0b3a07112d8625"
+            ]
+        ]
+    }
+]
