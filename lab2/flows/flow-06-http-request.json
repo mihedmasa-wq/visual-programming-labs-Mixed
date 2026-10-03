@@ -1,0 +1,71 @@
+[
+    {
+        "id": "c130e94fdc3402bd",
+        "type": "inject",
+        "z": "20470d11da690d87",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 160,
+        "wires": [
+            [
+                "a6497fbf8d65c4c4"
+            ]
+        ]
+    },
+    {
+        "id": "a71faf73e5cbb4f0",
+        "type": "debug",
+        "z": "20470d11da690d87",
+        "name": "debug 7",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a6497fbf8d65c4c4",
+        "type": "http request",
+        "z": "20470d11da690d87",
+        "name": "lab2/Михед/http",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://catfact.ninja/fact",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 320,
+        "y": 160,
+        "wires": [
+            [
+                "a71faf73e5cbb4f0"
+            ]
+        ]
+    }
+]
