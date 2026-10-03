@@ -1,0 +1,161 @@
+[
+    {
+        "id": "3243b656c950c64f",
+        "type": "http response",
+        "z": "04147d43cac8c7cd",
+        "name": "Error",
+        "statusCode": "",
+        "headers": {},
+        "x": 590,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "eb505cf3d7e9f37a",
+        "type": "http in",
+        "z": "04147d43cac8c7cd",
+        "name": "GET /api/text",
+        "url": "/api/text",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 200,
+        "wires": [
+            [
+                "fbb550c56b03b247"
+            ]
+        ]
+    },
+    {
+        "id": "fbb550c56b03b247",
+        "type": "template",
+        "z": "04147d43cac8c7cd",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "Привет! Это простой текстовый ответ из Node-RED. Студент: Михед.",
+        "output": "str",
+        "x": 380,
+        "y": 200,
+        "wires": [
+            [
+                "ab4fba41ecf7436a"
+            ]
+        ]
+    },
+    {
+        "id": "ab4fba41ecf7436a",
+        "type": "http response",
+        "z": "04147d43cac8c7cd",
+        "name": "Response text",
+        "statusCode": "200",
+        "headers": {},
+        "x": 600,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "88b55821b0e0cda5",
+        "type": "http in",
+        "z": "04147d43cac8c7cd",
+        "name": "GET /api/info",
+        "url": "/api/info",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 190,
+        "y": 340,
+        "wires": [
+            [
+                "80b470e96acc8fe4"
+            ]
+        ]
+    },
+    {
+        "id": "80b470e96acc8fe4",
+        "type": "function",
+        "z": "04147d43cac8c7cd",
+        "name": "info",
+        "func": "msg.payload = {\n    student: \"Михед\",\n    lab: 2,\n    status: \"OK\"\n};\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 370,
+        "y": 340,
+        "wires": [
+            [
+                "ceb794366c86940a"
+            ]
+        ]
+    },
+    {
+        "id": "ceb794366c86940a",
+        "type": "http response",
+        "z": "04147d43cac8c7cd",
+        "name": "Response info",
+        "statusCode": "",
+        "headers": {},
+        "x": 600,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a5a510e3494ea8c2",
+        "type": "http in",
+        "z": "04147d43cac8c7cd",
+        "name": "GET /api/items/:id",
+        "url": "/api/items/:id",
+        "method": "get",
+        "upload": false,
+        "skipBodyParsing": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 460,
+        "wires": [
+            [
+                "fbae1ce5757dfda2"
+            ]
+        ]
+    },
+    {
+        "id": "fbae1ce5757dfda2",
+        "type": "function",
+        "z": "04147d43cac8c7cd",
+        "name": "items handler",
+        "func": "const id = msg.req.params.id;\nconst limit = parseInt(msg.req.query.limit) || 10;\n\n// Проверка на ошибку 400: id должен быть числом\nif (isNaN(id)) {\n    msg.statusCode = 400;\n    msg.payload = {\n        status: \"error\",\n        message: \"ID must be a number\",\n        code: 400\n    };\n    return [null, msg]; // второй выход — ошибка\n}\n\n// Проверка на ошибку 404: id не должен быть больше 100\nif (parseInt(id) > 100) {\n    msg.statusCode = 404;\n    msg.payload = {\n        status: \"error\",\n        message: \"Item not found\",\n        code: 404\n    };\n    return [null, msg]; // второй выход — ошибка\n}\n\n// Успешный ответ\nmsg.payload = {\n    status: \"success\",\n    itemId: parseInt(id),\n    limit: limit,\n    items: [\n        { id: parseInt(id), name: \"Item \" + id }\n    ]\n};\nreturn [msg, null]; // первый выход — успех",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 460,
+        "wires": [
+            [
+                "1ab0212440d1ccc8",
+                "3243b656c950c64f"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "1ab0212440d1ccc8",
+        "type": "http response",
+        "z": "04147d43cac8c7cd",
+        "name": "Success",
+        "statusCode": "200",
+        "headers": {},
+        "x": 600,
+        "y": 440,
+        "wires": []
+    }
+]
