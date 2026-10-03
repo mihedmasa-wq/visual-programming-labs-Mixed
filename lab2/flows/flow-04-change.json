@@ -1,0 +1,89 @@
+[
+    {
+        "id": "102074d98bbc8d24",
+        "type": "inject",
+        "z": "9ee1b6f6fa8366b4",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "Привет из change-ноды",
+        "payloadType": "str",
+        "x": 170,
+        "y": 160,
+        "wires": [
+            [
+                "60c0424ad9ac1d25"
+            ]
+        ]
+    },
+    {
+        "id": "77548f526fcc5a24",
+        "type": "debug",
+        "z": "9ee1b6f6fa8366b4",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 660,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "60c0424ad9ac1d25",
+        "type": "change",
+        "z": "9ee1b6f6fa8366b4",
+        "name": "lab2/Михед/change",
+        "rules": [
+            {
+                "t": "set",
+                "p": "topic",
+                "pt": "msg",
+                "to": "lab2/Михед/change",
+                "tot": "str"
+            },
+            {
+                "t": "set",
+                "p": "timestamp",
+                "pt": "msg",
+                "to": "",
+                "tot": "date"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "Изменено через change-ноду",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 410,
+        "y": 160,
+        "wires": [
+            [
+                "77548f526fcc5a24"
+            ]
+        ]
+    }
+]
