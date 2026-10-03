@@ -1,0 +1,117 @@
+[
+    {
+        "id": "6d2d03b5b4cc7e0d",
+        "type": "inject",
+        "z": "93bc6696701d4e0d",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "num",
+        "x": 120,
+        "y": 180,
+        "wires": [
+            [
+                "d02699ceb89d97b2"
+            ]
+        ]
+    },
+    {
+        "id": "4dad294ab5f19dca",
+        "type": "debug",
+        "z": "93bc6696701d4e0d",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "d02699ceb89d97b2",
+        "type": "function",
+        "z": "93bc6696701d4e0d",
+        "name": "lab2/Михед/function",
+        "func": "// Массив с числами\nconst numbers = [10, 25, 3, 47, 8];\nlet sum = 0;\n\n// Цикл for для подсчёта суммы\nfor (let i = 0; i < numbers.length; i++) {\n    sum += numbers[i];\n}\n\n// Условие if/else\nlet message;\nif (sum > 50) {\n    message = \"Сумма большая\";\n} else {\n    message = \"Сумма небольшая\";\n}\n\n// Формируем объект с результатом\nmsg.payload = {\n    originalArray: numbers,\n    sum: sum,\n    message: message,\n    timestamp: new Date().toISOString()\n};\n\nreturn msg;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 180,
+        "wires": [
+            [
+                "86bfb55bfc904ca1"
+            ]
+        ]
+    },
+    {
+        "id": "86bfb55bfc904ca1",
+        "type": "switch",
+        "z": "93bc6696701d4e0d",
+        "name": "",
+        "property": "payload.sum",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gt",
+                "v": "50",
+                "vt": "num"
+            },
+            {
+                "t": "lte",
+                "v": "50",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 550,
+        "y": 180,
+        "wires": [
+            [
+                "4dad294ab5f19dca",
+                "f175b953966d5ec5"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "f175b953966d5ec5",
+        "type": "debug",
+        "z": "93bc6696701d4e0d",
+        "name": "debug 4",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 220,
+        "wires": []
+    }
+]
