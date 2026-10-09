@@ -1,0 +1,147 @@
+[
+    {
+        "id": "8662501294e8ae57",
+        "type": "telegram command",
+        "z": "4c9e1da7950d20c8",
+        "name": "",
+        "command": "/start",
+        "description": "Стартовая команда",
+        "registercommand": true,
+        "language": "ru",
+        "scope": "default",
+        "bot": "6247758e152e1a70",
+        "strict": false,
+        "hasresponse": true,
+        "useregex": false,
+        "removeregexcommand": false,
+        "outputs": 2,
+        "x": 130,
+        "y": 300,
+        "wires": [
+            [
+                "b91a5cd82acf144b"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "b91a5cd82acf144b",
+        "type": "telegram sender",
+        "z": "4c9e1da7950d20c8",
+        "name": "start reply",
+        "bot": "6247758e152e1a70",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 380,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cc82701435136322",
+        "type": "debug",
+        "z": "4c9e1da7950d20c8",
+        "name": "debug 9",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "872e137fab87c2b8",
+        "type": "telegram receiver",
+        "z": "4c9e1da7950d20c8",
+        "name": "echo receiver",
+        "bot": "6247758e152e1a70",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "hasinput": false,
+        "inputs": 0,
+        "handleallupdates": false,
+        "handleprocessupdates": false,
+        "x": 190,
+        "y": 420,
+        "wires": [
+            [
+                "3d890918adc65101"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3d890918adc65101",
+        "type": "function",
+        "z": "4c9e1da7950d20c8",
+        "name": "echo reply",
+        "func": "// Получаем текст сообщения\nconst text = msg.payload.content;\n\n// Формируем ответ\nmsg.payload = {\n    chatId: msg.payload.chatId,\n    type: \"message\",\n    content: \"Эхо: \" + text\n};\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 450,
+        "y": 420,
+        "wires": [
+            [
+                "ada4cc439bb00138"
+            ]
+        ]
+    },
+    {
+        "id": "ada4cc439bb00138",
+        "type": "telegram sender",
+        "z": "4c9e1da7950d20c8",
+        "name": "echo sender",
+        "bot": "6247758e152e1a70",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 650,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6247758e152e1a70",
+        "type": "telegram bot",
+        "botname": "tvl_lab2_Mixed_bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "testenvironment": false,
+        "updatemode": "polling",
+        "pollinterval": 300,
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": 6667,
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbothost": "0.0.0.0",
+        "localbotport": 8443,
+        "publicbotport": 8443,
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
+        "id": "d2d9d24d03bc121e",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-contrib-telegrambot": "19.0.3"
+        }
+    }
+]
