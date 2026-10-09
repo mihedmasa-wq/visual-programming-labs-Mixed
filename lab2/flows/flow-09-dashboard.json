@@ -1,0 +1,151 @@
+[
+    {
+        "id": "8b22a69e332af70b",
+        "type": "inject",
+        "z": "2b7c1b987a295dc2",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 170,
+        "y": 240,
+        "wires": [
+            [
+                "9ba18076403f9da0"
+            ]
+        ]
+    },
+    {
+        "id": "9ba18076403f9da0",
+        "type": "function",
+        "z": "2b7c1b987a295dc2",
+        "name": "temperature sensor",
+        "func": "const temperature = (Math.random() * 20 + 15).toFixed(2);\nmsg.payload = parseFloat(temperature);\nmsg.topic = \"temperature\";\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 240,
+        "wires": [
+            [
+                "d5bc73db71d6a017",
+                "873484d84993eb23"
+            ]
+        ]
+    },
+    {
+        "id": "d5bc73db71d6a017",
+        "type": "ui_gauge",
+        "z": "2b7c1b987a295dc2",
+        "name": "Temperature Gauge",
+        "group": "fa16e4dbec9536e1",
+        "order": 0,
+        "width": "4",
+        "height": "4",
+        "gtype": "gage",
+        "title": "Температура",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": "15",
+        "max": "35",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 700,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "873484d84993eb23",
+        "type": "ui_chart",
+        "z": "2b7c1b987a295dc2",
+        "name": "Temperature Chart",
+        "group": "fa16e4dbec9536e1",
+        "order": 1,
+        "width": "6",
+        "height": "6",
+        "label": "Температура (история)",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "Ожидание данных...",
+        "dot": false,
+        "ymin": "15",
+        "ymax": "35",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 690,
+        "y": 300,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "fa16e4dbec9536e1",
+        "type": "ui_group",
+        "name": "Датчик температуры",
+        "tab": "621a5a4a4a5f5dc0",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "621a5a4a4a5f5dc0",
+        "type": "ui_tab",
+        "name": "Лабораторная 2",
+        "icon": "thermostat",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3f31fcce7e8a99a3",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
