@@ -1,0 +1,88 @@
+[
+    {
+        "id": "49e5a2974fe6d3a7",
+        "type": "inject",
+        "z": "5847e73d379f0379",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "2",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 160,
+        "wires": [
+            [
+                "93550a31da072c91"
+            ]
+        ]
+    },
+    {
+        "id": "680985bdb51772a4",
+        "type": "debug",
+        "z": "5847e73d379f0379",
+        "name": "increment debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 650,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "93550a31da072c91",
+        "type": "function",
+        "z": "5847e73d379f0379",
+        "name": "smart counter",
+        "func": "// Получаем текущее значение счётчика из flow context\nlet counter = flow.get(\"counter\") || 0;\n// Увеличиваем счётчик\ncounter = counter + 1;\n// Проверяем, достиг ли счётчик лимита\nif (counter >= 5) {\n    // Сбрасываем счётчик\n    flow.set(\"counter\", 0);\n    \n    msg.payload = {\n        action: \"limit_reached\",\n        message: \"Достигнут лимит (5)! Счётчик сброшен.\",\n        counter: counter,\n        timestamp: new Date().toISOString()\n    };\n    return [null, msg]; // второй выход — сообщение о лимите\n}\n// Сохраняем значение в flow context\nflow.set(\"counter\", counter);\n// Обычное сообщение\nmsg.payload = {\n    action: \"increment\",\n    counter: counter,\n    message: \"Счётчик увеличен\",\n    timestamp: new Date().toISOString()\n};\nreturn [msg, null]; // первый выход — обычное сообщение",
+        "outputs": 2,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 160,
+        "wires": [
+            [
+                "680985bdb51772a4"
+            ],
+            [
+                "23e0b110584b6b2e"
+            ]
+        ]
+    },
+    {
+        "id": "23e0b110584b6b2e",
+        "type": "debug",
+        "z": "5847e73d379f0379",
+        "name": "limit debug",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 630,
+        "y": 220,
+        "wires": []
+    }
+]
