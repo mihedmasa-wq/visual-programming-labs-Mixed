@@ -1,0 +1,95 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ea7f7d11-6c6d-49c3-8da4-907a114019c4",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c71a2d0c-c7fa-40d1-a4cd-2521c7d75797",
+              "name": "payload",
+              "value": "Михед",
+              "type": "string"
+            },
+            {
+              "id": "524236ec-1434-457a-a2e0-7c475a0a37ab",
+              "name": "topic",
+              "value": "lab4/Михед/basic ",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "43b4c291-1124-4766-999d-c1d8e01e506e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Получаем данные из предыдущего узла (Set)\nconst data = $input.all();\n\n// Выводим в консоль (это будет видно в логах n8n)\nconsole.log(\"Полученные данные:\", JSON.stringify(data, null, 2));\n\n// Возвращаем данные для следующего шага\nreturn data;;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "afd78b05-a305-4762-b34a-892a9c40d0ee",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "4882f7b4-5ffe-459e-bf2a-aa85f4cd597b",
+  "meta": {
+    "instanceId": "a64cfa0ef003e0c4f528b176a165aca17c933b57dd1f335539cea7a29634f51a"
+  },
+  "nodeGroups": [],
+  "id": "RKo4hK6zI3OxQgeL",
+  "tags": []
+}
