@@ -192,15 +192,7 @@ Add a search bar that filters books and films by title, author/director, and gen
 | `screenshots/04/настройки кнопок и preview/10a-preview-after-delete.png` | Preview ПОСЛЕ удаления |
 
 
-### 5.8. Часть 5 — Ачивка
-
-| Файл | Что на нём |
-|---|---|
-| `screenshots/11-achievement-*.png` | Скриншоты ачивки (API Connector или Plugins) |
-
----
-
-## 6. Выводы
+## 5. Выводы
 
 В ходе выполнения лабораторной работы я:
 
@@ -242,10 +234,7 @@ Add a search bar that filters books and films by title, author/director, and gen
 
 ---
 
-## 7. Список коммитов в репозитории
-
-```bash
-git log --oneline
+## 6. Список коммитов в репозитории
 
 Все действия фиксировались коммитами с осмысленными сообщениями. Всего в репозитории более 13 коммитов по лабораторной работе №3.
 
@@ -269,3 +258,4 @@ git log --oneline
 - `Lab3: Part 4 - внесла изменения в папку 04` — правки
 - `Lab3: create folder structure` — финальная структура
 - `Lab3: Part 3 - добавила скрин по style` — последний коммит по стилю
+- `Lab3: Part 3 - добавилен report` 
