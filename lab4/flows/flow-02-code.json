@@ -1,0 +1,77 @@
+{
+  "name": "My workflow 2",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f6587633-a156-43a2-8d5b-293759548acc",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 1. Используем let и const\nlet counter = 0;\nconst myArray = [\"яблоко\", \"банан\", \"апельсин\"];\nconst myObject = {\n  name: \"Студент\",\n  group: \"ТВП\",\n  lab: 4\n};\n\n// 2. Используем цикл for\nfor (let i = 0; i < myArray.length; i++) {\n  counter++;\n  console.log(`Элемент ${i}: ${myArray[i]}`);\n}\n\n// 3. Используем if/else\nlet message = \"\";\nif (counter > 2) {\n  message = \"Массив большой\";\n} else {\n  message = \"Массив маленький\";\n}\n\n// 4. Возвращаем объект с полем payload\nreturn {\n  payload: {\n    count: counter,\n    fruits: myArray,\n    info: myObject,\n    status: message\n  }\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "ed0b82ac-bce4-4632-ba1e-6c8ec69fa0bb",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        448,
+        0
+      ],
+      "id": "c118c2ce-3279-4aa1-9499-ab5faf713c27",
+      "name": "No Operation, do nothing"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "f9a53fbe-2705-4635-8817-a7cf2ab18d8b",
+  "meta": {
+    "instanceId": "a64cfa0ef003e0c4f528b176a165aca17c933b57dd1f335539cea7a29634f51a"
+  },
+  "nodeGroups": [],
+  "id": "k4UwLwuqkwBWyAvb",
+  "tags": []
+}
